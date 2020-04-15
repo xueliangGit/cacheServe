@@ -1,6 +1,6 @@
 {
   "name": "cache-serve",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "这是一个 node 端的缓存服务，通过 cacheServeClient 来链接该服务",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,12 @@
     "cacheServe": "./bin/index.js"
   },
   "keywords": [
+    "cache-serve-client",
     "cache-serve",
+    "cacheServeClient",
+    "cacheServe",
     "cache",
-    "serve"
+    "server"
   ],
   "author": "",
   "license": "ISC",

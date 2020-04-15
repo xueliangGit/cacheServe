@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2020-04-14 20:07:43
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-04-15 12:30:24
+ * @LastEditTime: 2020-04-15 17:41:45
  */
 const { getResult } = require('./util')
 class Table {
@@ -10,9 +10,12 @@ class Table {
     this.name = name
     this.cache = {}
   }
-  async  set (data = {}) {
+  set (data = {}, { lifetime = 60 * 1000 * 60 }) {
     try {
       Object.assign(this.cache, data)
+      setTimeout(() => {
+        this.del(data)
+      }, lifetime)
       return getResult(200)
     } catch (e) {
       return getResult(201, e)
@@ -21,18 +24,30 @@ class Table {
   get (key) {
     return this.cache[key] ? getResult(200, '', { data: this.cache[key] }) : getResult(204, 'none')
   }
+  del (key) {
+    if (typeof key === 'object') {
+      Object.keys(key).forEach(v => this.del(v))
+    } else if (key) {
+      delete this.cache[key]
+    }
+  }
 }
 var tablesData = {}
 function getTable () {
   return getResult(200, '', { data: Object.keys(tablesData) })
 }
-async function setData ({ table, data }) {
+function setData ({ table, data, params = {} }) {
   if (!tablesData[table]) {
     tablesData[table] = new Table(table)
   }
-  return await tablesData[table].set(data)
+  return tablesData[table].set(data, { lifetime: params.lifetime })
 }
-
+function delData ({ table, key }) {
+  if (!tablesData[table]) {
+    return
+  }
+  tablesData[table].del(key)
+}
 function getData ({ table, key }) {
   if (!tablesData[table]) {
     return getResult(204, 'none')
@@ -40,5 +55,5 @@ function getData ({ table, key }) {
   return tablesData[table].get(key)
 }
 module.exports = {
-  getTable, setData, getData
+  getTable, setData, getData, delData
 }

@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2020-04-14 11:38:42
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-04-15 15:40:23
+ * @LastEditTime: 2020-04-15 17:41:07
  */
 const server = require('http').createServer();
 const cache = require('./cache')
@@ -24,8 +24,8 @@ module.exports.CacheServeStart = function CacheServeStart (port = 10080) {
       socket.on('getTable', function ({ mid }) {
         socket.emit('message from serve', { mid, data: cache.getTable() })
       });
-      socket.on('set', async function ({ mid, table, data }) {
-        let datas = await cache.setData({ table, data })
+      socket.on('set', async function ({ mid, table, data, params }) {
+        let datas = await cache.setData({ table, data, params })
         socket.emit('message from serve', { mid, data: datas })
       });
       socket.on('get', function ({ mid, table, key }) {

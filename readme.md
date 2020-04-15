@@ -6,4 +6,23 @@
 
 一旦重启后数据将丢失
 
-搭配 [cacheServeClient]()
+搭配 [cacheServeClient](https://www.npmjs.com/package/cache-serve-client)
+
+缓存时间默认是 缓存一个小时；一小时后会自动销毁
+
+可以通过 cacheServeClient 工具进行操作时添加过期时间
+
+```js
+// lifetime 是 存活时间 table 要存在那个分类里 data 要存储的数据 Object
+cacheServe
+  .set({ table: 'cart1', data, params: { lifetime: 3000 } })
+  .then((res) => {
+    if (i <= 1) {
+      times.setE = Date.now() - times.setB
+      console.log('数据执行完毕,耗时：', times.setE, 'ms')
+    } else {
+      console.log(data, i, 'set')
+      // setData(--i)
+    }
+  })
+```
