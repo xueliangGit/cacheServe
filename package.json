@@ -1,7 +1,7 @@
 {
   "name": "cache-serve",
   "version": "1.0.0",
-  "description": "",
+  "description": "这是一个 node 端的缓存服务，通过 cacheServeClient 来链接该服务",
   "main": "index.js",
   "scripts": {
     "start": "cacheServe start",
@@ -10,11 +10,24 @@
   "bin": {
     "cacheServe": "./bin/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "cache-serve",
+    "cache",
+    "serve"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "commander": "^5.0.0",
     "socket.io": "^2.3.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xueliangGit/cacheServe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xueliangGit/cacheServe/issues"
+  },
+  "homepage": "https://github.com/xueliangGit/cacheServe#readme"
 }
