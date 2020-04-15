@@ -8,6 +8,33 @@
 
 搭配 [cacheServeClient](https://www.npmjs.com/package/cache-serve-client)
 
+## 使用
+
+> 全局安装方式
+
+```js
+npm i cache-serve -g
+
+cacheServe start  // 开启10080端口 服务
+```
+
+> 局部使用
+
+```js
+// 安装
+npm i cache-serve -g
+
+//在 package.json 修改文件
+"scripts": {
+    "start:cache":"cacheServe start ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+// 开始
+npm run start:cache
+```
+
+## 缓存的时效
+
 缓存时间默认是 缓存一个小时；一小时后会自动销毁
 
 可以通过 cacheServeClient 工具进行操作时添加过期时间
