@@ -1,0 +1,20 @@
+{
+  "name": "cache-serve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cacheServe start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "cacheServe": "./bin/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^5.0.0",
+    "socket.io": "^2.3.0"
+  }
+}
